@@ -1,8 +1,8 @@
-const axios = require('axios');
-const { BOT_SESSION, GENERAL_SESSION } = require('./constants');
-const { analyze } = require('./messageProcess');
+const { BOT_SESSION, GENERAL_SESSION } = require('./constants.js');
+const { analyze } = require('./messageProcess.js');
 let { getProducts, setProducts } = require('./variables');
-const GROUP_ID = require('./prop.js');
+let { writeFile } = require('./logFile.js');
+const { GROUP_ID, ADM_ID} = require('../prop.js');
 
 function trackState(client){
   
@@ -57,8 +57,9 @@ function lookupPreviousMessages(client){
 
 function listenReceivedMessages(client){
     client.onMessage((message) => {
-        if (message.from == GROUP_ID && message.isGroupMsg === false) {
+        if (message.from == GROUP_ID || message.from == ADM_ID/*&& message.isGroupMsg === false*/) {
             analyze(client, message);
+            //writeFile(JSON.stringify(message, null, 2));
         }
     });
 

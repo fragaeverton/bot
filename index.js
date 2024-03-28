@@ -1,6 +1,6 @@
 const express = require('express');
-const { initializeSessions } = require('./sessions');
-const { handleRequests } = require('./requests');
+const { initializeSessions } = require('./modules/sessions');
+const { handleRequests } = require('./modules/requests');
 
 const app = express();
 const port = 3000;

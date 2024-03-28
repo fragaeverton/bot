@@ -1,7 +1,5 @@
-const axios = require('axios');
-const fs = require('fs');
-const { BOT_SESSION } = require('./constants');
-const GROUP_ID = require('./prop.js');
+const { BOT_SESSION } = require('./constants.js');
+const GROUP_ID = require('../prop.js');
 
 function sendMessage(client, msg, reply) {
   //writeFile(JSON.stringify(currSession, null, 2));
@@ -17,10 +15,10 @@ function sendMessage(client, msg, reply) {
 }
 
 
-function sendStock(client, msg, {url, name, shop}){
+function sendStock(client, msg, item){
     //writeFile(JSON.stringify(currSession, null, 2));
     client
-      .sendLinkPreview(msg.from, url, `${name} - ${shop.name}`)
+      .sendLinkPreview(msg.from, item.url, `${item.name} - ${item.shop.name}\n<Object>${JSON.stringify(item, null, 2)}</Object>`)
       .then((result) => {
         //console.log('Result: ', result); //return object success
       })

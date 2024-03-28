@@ -1,6 +1,5 @@
 const { BOT_SESSION, GENERAL_SESSION } = require('./constants.js');
-const { analyze } = require('./messageProcess.js');
-let { getProducts, setProducts } = require('./variables');
+let { getShopList, setShopList } = require('./variables');
 let { writeFile } = require('./logFile.js');
 const { GROUP_ID, ADM_ID} = require('../prop.js');
 
@@ -46,7 +45,7 @@ function lookupPreviousMessages(client){
             let msg = msgs[msgs.length - index].body;
             if(msg!="*Your list is empty*" ){
                 if(/^(?!(\$|https:)).*$/.test(msg)){
-                    setProducts(msg.split("\n").map(item => item.toUpperCase()));
+                    setShopList(msg.split("\n").map(item => item.toUpperCase()));
                 }else{
                     analyzePreviousMsgs(msgs,++index);
                 }
@@ -55,14 +54,5 @@ function lookupPreviousMessages(client){
     }
 }
 
-function listenReceivedMessages(client){
-    client.onMessage((message) => {
-        if (message.from == GROUP_ID || message.from == ADM_ID/*&& message.isGroupMsg === false*/) {
-            analyze(client, message);
-            //writeFile(JSON.stringify(message, null, 2));
-        }
-    });
 
-}
-
-module.exports = { trackState, lookupPreviousMessages, listenReceivedMessages };
+module.exports = { trackState, lookupPreviousMessages };

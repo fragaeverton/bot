@@ -1,15 +1,15 @@
-let products = [];
+let shopList = [];
 
 
-function getProducts() {
-    return products;
+function getShopList() {
+    return shopList;
 }
 
-function setProducts(prod) {
-    products = prod;
+function setShopList(shopL) {
+    shopList = shopL;
 }
 
 module.exports = {
-    getProducts,
-    setProducts
+    getShopList,
+    setShopList
 };

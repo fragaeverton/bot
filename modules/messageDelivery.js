@@ -15,7 +15,7 @@ function sendMessage(client, msg, reply) {
 }
 
 
-function sendStock(client, msg, item){
+function sendPreview(client, msg, item){
     //writeFile(JSON.stringify(currSession, null, 2));
     client
       .sendLinkPreview(msg.from, item.url, `${item.name} - ${item.shop.name}\n<Object>${JSON.stringify(item, null, 2)}</Object>`)
@@ -29,4 +29,4 @@ function sendStock(client, msg, item){
   }
   
 
-module.exports = { sendMessage, sendStock };
+module.exports = { sendMessage, sendPreview };

@@ -1,5 +1,6 @@
 const venom = require('venom-bot');
-const { trackState, lookupPreviousMessages, listenReceivedMessages } = require('./sessionHandlers');
+const { trackState, lookupPreviousMessages } = require('./sessionHandlers');
+const { startApp } = require('./app');
 const { BOT_SESSION, GENERAL_SESSION } = require('./constants.js');
 
 async function initializeSessions() {
@@ -25,7 +26,7 @@ async function createSession(name) {
 function start(client) {
   trackState(client);
   lookupPreviousMessages(client);
-  listenReceivedMessages(client);
+  startApp(client); 
 }
 
 module.exports = { initializeSessions };

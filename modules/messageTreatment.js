@@ -20,6 +20,11 @@ function deleteItemFromShopList(body){
     return viewShopList();
 }
 
+function addProduct(body){
+    let target = body.replace("$ADD ", "");    
+    return {text:"", method: null};
+}
+
 function insertNickname(client, message){
     if(message.from == ADM_ID){
         let property = JSON.parse(message.quotedMsg.title.match(rgex_contentBetweenObject)[0]);
